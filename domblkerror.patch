@@ -1,0 +1,51 @@
+diff --git a/libvirt/tests/src/virsh_cmd/domain/virsh_domblkerror.py b/libvirt/tests/src/virsh_cmd/domain/virsh_domblkerror.py
+index a766dfe..bb62880 100644
+--- a/libvirt/tests/src/virsh_cmd/domain/virsh_domblkerror.py
++++ b/libvirt/tests/src/virsh_cmd/domain/virsh_domblkerror.py
+@@ -1,5 +1,4 @@
+ import logging
+-import time
+ import shutil
+ import os
+ from autotest.client.shared import error
+@@ -39,6 +38,8 @@ def run(test, params, env):
+     # backup /etc/exports
+     shutil.copyfile(export_file, "%s.bak" % export_file)
+     selinux_bak = ""
++    # Backup for recovery
++    vmxml_backup = vm_xml.VMXML.new_from_inactive_dumpxml(vm_name)
+ 
+     try:
+         # Gerenate tmp dir
+@@ -62,7 +63,7 @@ def run(test, params, env):
+                 is_setup=True, mount_dir=nfs_dir, is_mount=False,
+                 export_options=mount_opt, export_dir=img_dir)
+             selinux_bak = res["selinux_status_bak"]
+-            utils.run("mount -o soft,timeo=1,retrans=1,retry=0 localhost:%s "
++            utils.run("mount -o nolock,soft,timeo=1,retrans=1,retry=0 localhost:%s "
+                       "%s" % (img_dir, nfs_dir))
+             img_path = os.path.join(nfs_dir, img_name)
+             nfs_service = Factory.create_service("nfs")
+@@ -105,12 +106,14 @@ def run(test, params, env):
+         bef_list = session.cmd_output(get_disks_cmd).split("\n")
+ 
+         # Attach disk to guest
+-        ret = virsh.attach_device(domain_opt=vm_name,
++        vm.destroy()
++        ret = virsh.attach_device(domain_opt=vm_name, flagstr="--config",
+                                   file_opt=img_disk.xml)
+         if ret.exit_status != 0:
+             raise error.TestFail("Fail to attach device %s" % ret.stderr)
+-        time.sleep(2)
+         logging.debug("domain xml is %s", virsh.dumpxml(vm_name))
++        vm.start()
++        session = vm.wait_for_login()
+         # get disk list after attach
+         aft_list = session.cmd_output(get_disks_cmd).split("\n")
+         # Find new disk after attach
+@@ -177,3 +180,5 @@ def run(test, params, env):
+         elif error_type == "no space":
+             vm.destroy()
+             _pool_vol.cleanup_pool(pool_name, "fs", pool_target, img_name)
++        # Restore VM
++        vmxml_backup.sync()
