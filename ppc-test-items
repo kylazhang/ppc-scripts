@@ -8,7 +8,7 @@ virsh.blockcopy.positive_test.non_acl.local_disk.no_option
 virsh.blockjob.positive_test.abort_option
 virsh.blockpull.normal_test.notimeout.base_snap_one
 virsh.blockresize.normal_test.byte.qcow2_type
-virsh.change_media.cdrom_test.positive_test.eject.options.config.running_guest
+virsh.change_media.cdrom_test.scsi.positive_test.eject.options.config.running_guest
 virsh.console.normal_test.acl_test.valid_domname
 virsh.cpu_baseline.positive_test.default_test
 virsh.cpu_compare.host_cpu.exact_cpu_match.default_feature
