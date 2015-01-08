@@ -1,0 +1,50 @@
+diff --git a/libvirt/tests/src/virsh_cmd/domain/virsh_blockresize.py b/libvirt/tests/src/virsh_cmd/domain/virsh_blockresize.py
+index ccdcd99..c34d63e 100644
+--- a/libvirt/tests/src/virsh_cmd/domain/virsh_blockresize.py
++++ b/libvirt/tests/src/virsh_cmd/domain/virsh_blockresize.py
+@@ -5,6 +5,7 @@ import commands
+ from autotest.client.shared import error
+ from virttest import virsh, data_dir, utils_misc
+ from provider import libvirt_version
++from virttest.libvirt_xml import vm_xml
+ 
+ 
+ OVER_SIZE = (1 << 64)
+@@ -30,6 +31,9 @@ def run(test, params, env):
+     resize_value = params.get("resize_value")
+     virsh_dargs = {'debug': True}
+ 
++    # Backup for recovery
++    vmxml_backup = vm_xml.VMXML.new_from_inactive_dumpxml(vm_name)
++
+     # Skip 'qed' cases for libvirt version greater than 1.1.0
+     if libvirt_version.version_compare(1, 1, 0):
+         if image_format == "qed":
+@@ -51,12 +55,15 @@ def run(test, params, env):
+         raise error.TestError("Creating image file %s failed: %s"
+                               % (image_path, output))
+ 
+-    # Hotplug the image as disk device
++    # Coldplug the image as disk device
++    vm = env.get_vm(vm_name)
++    vm.destroy()
+     result = virsh.attach_disk(vm_name, source=image_path, target="vdd",
+-                               extra=" --subdriver %s" % image_format)
++                               extra=" --subdriver %s --config" % image_format)
+     if result.exit_status:
+         raise error.TestError("Failed to attach disk %s to VM: %s."
+                               % (image_path, result.stderr))
++    vm.start()
+ 
+     if resize_value == "over_size":
+         # Use byte unit for over_size test
+@@ -139,7 +146,8 @@ def run(test, params, env):
+                                      "different from actual size from "
+                                      "'qemu-img info'")
+     finally:
+-        virsh.detach_disk(vm_name, target="vdd")
++        # Restore VM
++        vmxml_backup.sync()
+ 
+         if os.path.exists(image_path):
+             os.remove(image_path)
