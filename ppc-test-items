@@ -3,7 +3,6 @@ virsh.attach_detach_interface.normal_test.vm_running.default_network.domid
 virsh.autostart.positive_test.set_autostart
 virsh.blkdeviotune.positive_testing.set_blkdevio_parameter.running_guest.change_read_bytes_sec.options.config.inside_boundary
 virsh.blkdeviotune.positive_testing.get_blkdevio_parameter.running_guest.options.current
-virsh.blkdeviotune.positive_testing.get_blkdevio_parameter.running_guest.options.current
 virsh.blockcopy.positive_test.non_acl.local_disk.no_option
 virsh.blockjob.positive_test.abort_option
 virsh.blockpull.normal_test.notimeout.base_snap_one
@@ -53,7 +52,7 @@ virsh.save.normal_test.normal_option.no_option.no_progress
 virsh.save_image_define.running
 virsh.save_image_edit.running
 virsh.schedinfo_qemu_posix.normal_test.set_cpu_param.set_cpu_shares.value_exceed.set_by_cmd.config.valid_domid
-virsh.schedinfo_xen_credit.normal_test.show_schedinfo.valid_domid
+virsh.schedinfo_qemu_posix.normal_test.show_schedinfo.valid_domname
 virsh.screenshot.normal_test.non_acl.screen_0.name_option
 virsh.sendkey.params_test.non_acl.linux_keycode
 virsh.setmaxmem.normal_test.config.running.same_mem.domname.dom_arg_size_arg
@@ -123,7 +122,7 @@ virsh.find_storage_pool_sources_as.positive_test.local_source.iscsi_type
 virsh.pool.positive_test.pool_type_dir
 virsh.pool_create.positive_test.from_given_pool
 virsh.pool_create_as.pool_create_as
-virsh.pool_edit.positive_test.name_option
+virsh.pool_edit.positive_test.name_option.dir_pool.edit_pool_target
 
 virsh.secret_define_undefine.normal_test.non_acl.ephemeral_yes
 virsh.secret_dumpxml.normal_test.non_acl
@@ -143,4 +142,4 @@ virsh.vol_create_from.positive_test.dest_vol_format.v_qcow2.src_vol_format.v_qco
 virsh.vol_download_upload.download_upload.dir_pool.download.acl_test.0-1024
 virsh.vol_download_upload.download_upload.dir_pool.upload.acl_test.0-end
 virsh.vol_resize.positive_test.acl_test.allocate_capacity.dir_pool
-virsh.volume.dir_pool
+virsh.volume.dir_pool.vol_format_qcow2.vol_allocation.normal_size
