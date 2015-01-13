@@ -5,7 +5,7 @@ virsh.blkdeviotune.positive_testing.set_blkdevio_parameter.running_guest.change_
 virsh.blkdeviotune.positive_testing.get_blkdevio_parameter.running_guest.options.current
 virsh.blockcopy.positive_test.non_acl.local_disk.no_option
 virsh.blockjob.positive_test.abort_option
-virsh.blockpull.normal_test.notimeout.base_snap_one
+virsh.blockpull.normal_test.file_disk.local.notimeout.base_snap_one.with_bandwidth
 virsh.blockresize.normal_test.byte.qcow2_type
 virsh.change_media.cdrom_test.scsi.positive_test.eject.options.config.running_guest
 virsh.console.normal_test.acl_test.valid_domname
@@ -35,14 +35,14 @@ virsh.domxml_from_native.expect_option
 virsh.domxml_to_native.expected_option
 virsh.dump.positive_test.non_acl.bzip2_format_dump
 virsh.dumpxml.normal_test.non_acl.vm_running.with_default.domid
-virsh.edit.normal_test.id_option
+virsh.edit.positive_test.name_option.edit_vcpu
 virsh.emulatorpin.positive_testing.get_emulatorpin_parameter.running_guest.emulatorpin_options.current
-virsh.managedsave.test_saved_file
-virsh.memtune.memtune
+virsh.managedsave.functional_test.saved_file
+virsh.memtune
 virsh.migrate_compcache.set_compcache.positive_test.live_vm.max_size
 virsh.migrate_set_get_speed.normal_test.default
 virsh.qemu_agent_command.normal_test.guest_cmd_valid.no_arguments.guest_ping.guest_cpu_busy.async_option.valid_domid
-virsh.qemu_agent_command_fs.qemu_agent_command_fs
+virsh.qemu_agent_command_fs
 virsh.qemu_monitor_command.normal_test.hmp_option.cpus_info.vm_running.valid_domname
 virsh.reboot.normal_test.id_option.no_mode
 virsh.reset.positive_test.non_acl.name_options
@@ -121,7 +121,7 @@ virsh.find_storage_pool_sources.positive_test.non_acl.local_iscsi_source
 virsh.find_storage_pool_sources_as.positive_test.local_source.iscsi_type
 virsh.pool.positive_test.pool_type_dir
 virsh.pool_create.positive_test.from_given_pool
-virsh.pool_create_as.pool_create_as
+virsh.pool_create_as
 virsh.pool_edit.positive_test.name_option.dir_pool.edit_pool_target
 
 virsh.secret_define_undefine.normal_test.non_acl.ephemeral_yes
@@ -130,7 +130,7 @@ virsh.secret_list.normal_test.non_acl.no_option
 virsh.secret_set_get.positive_testing.private_secret
 
 virsh.snapshot.live.no_halt
-virsh.snapshot_create_as.positive_tests.non_acl.atomic_with_diskonly
+virsh.snapshot_create_as.positive_tests.non_acl.file_disk.no_snapshot_attr.atomic_with_diskonly
 virsh.snapshot_dumpxml.positive_tests.disk_only_snap.show_secure_info.without_passwd
 virsh.snapshot_edit.positive_tests.edit_option_clone.edit_option_current.disk_snapshot.delete_desc.disk_snapshot
 virsh.snapshot_par_cur.current_option.name_option
