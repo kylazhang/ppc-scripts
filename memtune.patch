@@ -1,0 +1,11 @@
+diff --git a/libvirt/tests/cfg/virsh_cmd/domain/virsh_memtune.cfg b/libvirt/tests/cfg/virsh_cmd/domain/virsh_memtune.cfg
+index d298790..250f393 100644
+--- a/libvirt/tests/cfg/virsh_cmd/domain/virsh_memtune.cfg
++++ b/libvirt/tests/cfg/virsh_cmd/domain/virsh_memtune.cfg
+@@ -3,5 +3,5 @@
+     # Values are in kbs
+     memtune_base_mem = 1048576
+     memtune_min_mem = 262144
+-    memtune_hard_base_mem = 120400
++    memtune_hard_base_mem = 120448
+     memtune_soft_base_mem = 204800
