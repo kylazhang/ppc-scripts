@@ -137,9 +137,9 @@ virsh.snapshot_par_cur.current_option.name_option
 virsh.snapshot_par_cur.mode_option.snapshotname_option.positive_tests_readwrite
 
 virsh.vol_clone_wipe.positive_test.non_acl.vol_format.qed_f.pool_type.dir
-virsh.vol_create.positive_test.disk_pool.vol_format_linux
+virsh.vol_create.positive_test.disk_pool.vol_format_linux.pool_format_none
 virsh.vol_create_from.positive_test.dest_vol_format.v_qcow2.src_vol_format.v_qcow2.dest_pool_type.dir.src_pool_type.dir
 virsh.vol_download_upload.download_upload.dir_pool.download.acl_test.0-1024
 virsh.vol_download_upload.download_upload.dir_pool.upload.acl_test.0-end
 virsh.vol_resize.positive_test.acl_test.allocate_capacity.dir_pool
-virsh.volume.dir_pool.vol_format_qcow2.vol_allocation.normal_size
+virsh.volume.dir_pool.vol_encrypt_none.vol_format_qcow2.vol_allocation.normal_size
