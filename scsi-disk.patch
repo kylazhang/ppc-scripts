@@ -1,5 +1,5 @@
-diff --git a/libvirt/tests/cfg/virsh_cmd/domain/virsh_blockcopy.cfg b/libvirt/tests/cfg/virsh_cmd/domain/virsh_blockcopy.cfg                                               
-index 91dcb26..6ccdd42 100644                                                                                                                                              
+diff --git a/libvirt/tests/cfg/virsh_cmd/domain/virsh_blockcopy.cfg b/libvirt/tests/cfg/virsh_cmd/domain/virsh_blockcopy.cfg
+index 1b33e4d..a3ae291 100644
 --- a/libvirt/tests/cfg/virsh_cmd/domain/virsh_blockcopy.cfg
 +++ b/libvirt/tests/cfg/virsh_cmd/domain/virsh_blockcopy.cfg
 @@ -1,6 +1,6 @@
@@ -10,11 +10,23 @@ index 91dcb26..6ccdd42 100644
      blockcopy_options = ""
      dest_path = ""
      dest_format = ""
+diff --git a/libvirt/tests/cfg/virsh_cmd/domain/virsh_blockpull.cfg b/libvirt/tests/cfg/virsh_cmd/domain/virsh_blockpull.cfg
+index 1533593..364f8a4 100644
+--- a/libvirt/tests/cfg/virsh_cmd/domain/virsh_blockpull.cfg
++++ b/libvirt/tests/cfg/virsh_cmd/domain/virsh_blockpull.cfg
+@@ -1,6 +1,7 @@
+ - virsh.blockpull:
+     type = virsh_blockpull
+     kill_vm_on_error = "no"
++    disk_target = "sda"
+     variants:
+         - normal_test:
+             status_error = "no"
 diff --git a/libvirt/tests/cfg/virsh_cmd/snapshot/virsh_snapshot_create_as.cfg b/libvirt/tests/cfg/virsh_cmd/snapshot/virsh_snapshot_create_as.cfg
-index 51df3d9..f02fd76 100644
+index c2dc528..da2ff25 100644
 --- a/libvirt/tests/cfg/virsh_cmd/snapshot/virsh_snapshot_create_as.cfg
 +++ b/libvirt/tests/cfg/virsh_cmd/snapshot/virsh_snapshot_create_as.cfg
-@@ -57,7 +57,7 @@
+@@ -90,7 +90,7 @@
                      snap_createas_opts = "a--a a--a--snap1"
                  - disk_only_spec:
                      snap_createas_opts = "--disk-only"
