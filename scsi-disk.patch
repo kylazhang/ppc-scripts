@@ -35,3 +35,48 @@ index c2dc528..da2ff25 100644
                  - check_libvirtd_log:
                      check_json_no_savevm = "yes"
                      snap_createas_opts = "--disk-only"
+diff --git a/libvirt/tests/cfg/virsh_cmd/domain/virsh_attach_detach_disk.cfg b/libvirt/tests/cfg/virsh_cmd/domain/virsh_attach_detach_disk.cfg
+index c1fcc02..6ef6649 100644
+--- a/libvirt/tests/cfg/virsh_cmd/domain/virsh_attach_detach_disk.cfg
++++ b/libvirt/tests/cfg/virsh_cmd/domain/virsh_attach_detach_disk.cfg
+@@ -9,8 +9,8 @@
+     at_dt_disk_no_attach = 'no'
+     at_dt_disk_test_twice = 'no'
+     at_dt_disk_device = disk
+-    at_dt_disk_device_target = vdb
+-    at_dt_disk_bus_type = virtio
++    at_dt_disk_device_target = sdb
++    at_dt_disk_bus_type = scsi
+     at_dt_disk_device_source = "attach.img"
+     at_dt_disk_device_source_format = "raw"
+     at_dt_disk_device_source_path = 'yes'
+diff --git a/libvirt/tests/cfg/virsh_cmd/domain/virsh_blockcommit.cfg b/libvirt/tests/cfg/virsh_cmd/domain/virsh_blockcommit.cfg
+index e843c92..2731007 100644
+--- a/libvirt/tests/cfg/virsh_cmd/domain/virsh_blockcommit.cfg
++++ b/libvirt/tests/cfg/virsh_cmd/domain/virsh_blockcommit.cfg
+@@ -40,8 +40,8 @@
+                             disk_source_protocol = "netfs"
+                             export_options = "rw,no_root_squash,fsid=0"
+                             disk_type = "file"
+-                            disk_target = "vda"
+-                            disk_target_bus = "virtio"
++                            disk_target = "sda"
++                            disk_target_bus = "scsi"
+                             disk_format = "qcow2"
+                             image_size = "10G"
+                 - network_disk:
+diff --git a/libvirt/tests/cfg/virsh_cmd/domain/virsh_detach_device.cfg b/libvirt/tests/cfg/virsh_cmd/domain/virsh_detach_device.cfg
+index 0718172..3574ac2 100644
+--- a/libvirt/tests/cfg/virsh_cmd/domain/virsh_detach_device.cfg
++++ b/libvirt/tests/cfg/virsh_cmd/domain/virsh_detach_device.cfg
+@@ -17,8 +17,8 @@
+             dt_device_bus_type = ide
+         - disk_test:
+             dt_device_device = disk
+-            dt_device_device_target = vdb
+-            dt_device_bus_type = virtio
++            dt_device_device_target = sdb
++            dt_device_bus_type = scsi
+             dt_device_device_source = "attach.img"
+             variants:
+                 - block_type:
