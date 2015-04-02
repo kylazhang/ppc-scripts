@@ -1,0 +1,31 @@
+diff --git a/libvirt/tests/src/virsh_cmd/domain/virsh_domfstrim.py b/libvirt/tests/src/virsh_cmd/domain/virsh_domfstrim.py
+index a2cd574..5271d45 100644
+--- a/libvirt/tests/src/virsh_cmd/domain/virsh_domfstrim.py
++++ b/libvirt/tests/src/virsh_cmd/domain/virsh_domfstrim.py
+@@ -39,14 +39,21 @@ def run(test, params, env):
+         scsi_disk.source = scsi_disk.new_disk_source(
+             **{'attrs': {'dev': disk_path}})
+         scsi_disk.target = {'dev': "sdb", 'bus': "scsi"}
++        controllers = vmxml.xmltreefile.findall("devices/controller")
++        for controller in controllers:
++            if controller.get("type") == "scsi":
++                find_scsi = "yes"
++        #        scsi_disk.address = scsi_disk.new_disk_address(
++        #            **{'attrs': {'unit': 0}}
+         vmxml.add_device(scsi_disk)
+ 
+         # Add scsi disk controller
+-        scsi_controller = Controller("controller")
+-        scsi_controller.type = "scsi"
+-        scsi_controller.index = "0"
+-        scsi_controller.model = "virtio-scsi"
+-        vmxml.add_device(scsi_controller)
++        if find_scsi is None:
++            scsi_controller = Controller("controller")
++            scsi_controller.type = "scsi"
++            scsi_controller.index = "0"
++            scsi_controller.model = "virtio-scsi"
++            vmxml.add_device(scsi_controller)
+ 
+         # Redefine guest
+         vmxml.sync()
