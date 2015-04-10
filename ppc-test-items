@@ -13,7 +13,7 @@ virsh.console.normal_test.acl_test.valid_domname
 virsh.cpu_baseline.positive_test.default_test
 virsh.cpu_compare.host_cpu.exact_cpu_match.default_feature
 virsh.cpu_stats.positive_test.option1
-virsh.create.autodestroy
+virsh.create.none
 virsh.define.number
 virsh.desc.positive_test.config_desc
 virsh.destroy.normal_test.acl_test.graceful
