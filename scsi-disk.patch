@@ -11,13 +11,13 @@ index 1b33e4d..a3ae291 100644
      dest_path = ""
      dest_format = ""
 diff --git a/libvirt/tests/cfg/virsh_cmd/domain/virsh_blockpull.cfg b/libvirt/tests/cfg/virsh_cmd/domain/virsh_blockpull.cfg
-index 1533593..364f8a4 100644
+index cedb334..5746427 100644
 --- a/libvirt/tests/cfg/virsh_cmd/domain/virsh_blockpull.cfg
 +++ b/libvirt/tests/cfg/virsh_cmd/domain/virsh_blockpull.cfg
-@@ -1,6 +1,7 @@
- - virsh.blockpull:
+@@ -2,6 +2,7 @@
      type = virsh_blockpull
      kill_vm_on_error = "no"
+     restart_tgtd = "yes"
 +    disk_target = "sda"
      variants:
          - normal_test:
