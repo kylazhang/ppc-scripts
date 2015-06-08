@@ -1,14 +1,16 @@
 diff --git a/libvirt/tests/src/virsh_cmd/domain/virsh_domblkerror.py b/libvirt/tests/src/virsh_cmd/domain/virsh_domblkerror.py
-index a766dfe..bb62880 100644
+index cc135e3..ddeee7f 100644
 --- a/libvirt/tests/src/virsh_cmd/domain/virsh_domblkerror.py
 +++ b/libvirt/tests/src/virsh_cmd/domain/virsh_domblkerror.py
-@@ -1,5 +1,4 @@
- import logging
--import time
- import shutil
- import os
- from autotest.client.shared import error
-@@ -39,6 +38,8 @@ def run(test, params, env):
+@@ -8,6 +8,7 @@ from virttest import virsh, data_dir, utils_test, utils_misc
+ from virttest import utils_selinux
+ from virttest.libvirt_xml.devices.disk import Disk
+ from virttest.staging.service import Factory
++from virttest.libvirt_xml import vm_xml
+ 
+ 
+ def run(test, params, env):
+@@ -38,6 +39,8 @@ def run(test, params, env):
      # backup /etc/exports
      shutil.copyfile(export_file, "%s.bak" % export_file)
      selinux_bak = ""
@@ -17,7 +19,7 @@ index a766dfe..bb62880 100644
  
      try:
          # Gerenate tmp dir
-@@ -62,7 +63,7 @@ def run(test, params, env):
+@@ -61,7 +64,7 @@ def run(test, params, env):
                  is_setup=True, mount_dir=nfs_dir, is_mount=False,
                  export_options=mount_opt, export_dir=img_dir)
              selinux_bak = res["selinux_status_bak"]
@@ -26,7 +28,7 @@ index a766dfe..bb62880 100644
                        "%s" % (img_dir, nfs_dir))
              img_path = os.path.join(nfs_dir, img_name)
              nfs_service = Factory.create_service("nfs")
-@@ -105,12 +106,14 @@ def run(test, params, env):
+@@ -104,12 +107,14 @@ def run(test, params, env):
          bef_list = session.cmd_output(get_disks_cmd).split("\n")
  
          # Attach disk to guest
@@ -43,7 +45,7 @@ index a766dfe..bb62880 100644
          # get disk list after attach
          aft_list = session.cmd_output(get_disks_cmd).split("\n")
          # Find new disk after attach
-@@ -177,3 +180,5 @@ def run(test, params, env):
+@@ -176,3 +181,5 @@ def run(test, params, env):
          elif error_type == "no space":
              vm.destroy()
              _pool_vol.cleanup_pool(pool_name, "fs", pool_target, img_name)
